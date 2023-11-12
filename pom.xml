@@ -48,6 +48,12 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.2.32</version>
 		</dependency>
+		<dependency>
+			<groupId>mx.com.sw</groupId>
+			<artifactId>sdk-java18</artifactId>
+			<version>0.0.1.5</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
