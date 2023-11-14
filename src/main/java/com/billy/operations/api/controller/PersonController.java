@@ -39,6 +39,8 @@ public class PersonController {
     }
 
     @Operation(summary = "Update a person by given a customId")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Not Found")
     @PutMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable UUID id, @RequestBody Person updatedPerson) {
         Person updated = personService.updatePerson(id, updatedPerson);
@@ -48,9 +50,14 @@ public class PersonController {
     }
 
     @Operation(summary = "Return a person by give the name")
-    @GetMapping("/{name}")
-    public Person getPersonByName(@PathVariable String name) {
-        return personService.findByName(name);
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Not Found")
+    @GetMapping(value ="/{name}",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Person> getPersonByName(@PathVariable String name) {
+        Person found =  personService.findByName(name);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(found);
     }
 
 }

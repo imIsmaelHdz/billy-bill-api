@@ -35,7 +35,7 @@ public class PersonService {
     }
 
     public Person findByName(String name) {
-        return personRepository.findByName(name);
-
+        Optional<Person> optionalPerson = Optional.ofNullable(personRepository.findByName(name));
+        return optionalPerson.orElseThrow(() -> new PersonNotFoundException("Person not found with Name: " + name));
     }
 }
