@@ -23,7 +23,11 @@ public class PersonService {
         if (existingPersonOptional.isPresent()) {
             Person existingPerson = existingPersonOptional.get();
             existingPerson.setName(updatedPerson.getName());
+            existingPerson.setEmail(updatedPerson.getEmail());
+            existingPerson.setLastName(updatedPerson.getLastName());
             existingPerson.setBirthYear(updatedPerson.getBirthYear());
+            existingPerson.setRFC(updatedPerson.getRFC());
+            existingPerson.setNationality(updatedPerson.getNationality());
             return personRepository.save(existingPerson);
         } else {
             throw new PersonNotFoundException("Person not found with ID: " + id );
