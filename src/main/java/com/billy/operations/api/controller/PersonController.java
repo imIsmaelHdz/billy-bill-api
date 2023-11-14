@@ -2,7 +2,7 @@ package com.billy.operations.api.controller;
 
 import com.billy.operations.api.model.Person;
 import com.billy.operations.api.service.PersonService;
-import com.billy.operations.api.repositories.PersonRepository;
+import com.billy.operations.api.repository.PersonRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +30,6 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable UUID id, @RequestBody Person updatedPerson) {
-        if (!personService.personExists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         Person updated = personService.updatePerson(id, updatedPerson);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
@@ -44,7 +41,7 @@ public class PersonController {
 
     @GetMapping("/{name}")
     public Person getPersonByName(@PathVariable String name) {
-        return personRepository.getPersonByName(name);
+        return personRepository.findByName(name);
     }
 
 }
