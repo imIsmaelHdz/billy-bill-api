@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.billy.operations.api.controller.exception.NotFoundException;
+import com.billy.operations.api.controller.exception.PersonNotFoundException;
 
 
 import java.util.Optional;
@@ -81,7 +81,7 @@ class PersonServiceTest {
 
         when(personRepository.findById(eq(personId))).thenReturn(Optional.empty());
 
-        NotFoundException exception = assertThrows(NotFoundException.class,
+        PersonNotFoundException exception = assertThrows(PersonNotFoundException.class,
                 () -> personService.updatePerson(personId, updatedPerson));
 
         verify(personRepository, times(1)).findById(eq(personId));

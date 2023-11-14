@@ -28,20 +28,17 @@ public class PersonController {
         return new ResponseEntity<>(savedPerson, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Update a person by given a customId")
     @PutMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable UUID id, @RequestBody Person updatedPerson) {
         Person updated = personService.updatePerson(id, updatedPerson);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
-    @GetMapping
-    public Iterable<Person> findAllPersons() {
-        return personRepository.findAll();
-    }
-
+    @Operation(summary = "Return a person by give the name")
     @GetMapping("/{name}")
     public Person getPersonByName(@PathVariable String name) {
-        return personRepository.findByName(name);
+        return personService.findByName(name);
     }
 
 }

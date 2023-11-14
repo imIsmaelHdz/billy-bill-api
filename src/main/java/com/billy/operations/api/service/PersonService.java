@@ -1,6 +1,6 @@
 package com.billy.operations.api.service;
 
-import com.billy.operations.api.controller.exception.NotFoundException;
+import com.billy.operations.api.controller.exception.PersonNotFoundException;
 import com.billy.operations.api.model.Person;
 import com.billy.operations.api.repository.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,12 @@ public class PersonService {
             existingPerson.setBirthYear(updatedPerson.getBirthYear());
             return personRepository.save(existingPerson);
         } else {
-            throw new NotFoundException("Person not found with ID: " + id );
+            throw new PersonNotFoundException("Person not found with ID: " + id );
         }
+    }
+
+    public Person findByName(String name) {
+        return personRepository.findByName(name);
+
     }
 }
