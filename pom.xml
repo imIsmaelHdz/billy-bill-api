@@ -8,12 +8,11 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.neo4j.example</groupId>
-	<artifactId>billy-bills-api-bs</artifactId>
+	<groupId>com.billy.operations.api</groupId>
+	<artifactId>billy-bill-api-bs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-data-neo4j-intro-app</name>
-	<description>Demo project for Spring Data Neo4j and Spring Boot</description>
-
+	<name>billy-bill-api-bs</name>
+	<description>An API for processing invoices in the Billy system</description>
 	<properties>
 		<java.version>19</java.version>
 	</properties>
