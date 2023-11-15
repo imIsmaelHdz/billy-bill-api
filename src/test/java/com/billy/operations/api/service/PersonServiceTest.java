@@ -25,7 +25,6 @@ class PersonServiceTest {
     @Mock
     PersonRepository personRepository;
 
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);

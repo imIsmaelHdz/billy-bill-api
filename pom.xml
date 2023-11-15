@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.neo4j.example</groupId>
-	<artifactId>billy-bills-api</artifactId>
+	<artifactId>billy-bills-api-bs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-data-neo4j-intro-app</name>
 	<description>Demo project for Spring Data Neo4j and Spring Boot</description>
