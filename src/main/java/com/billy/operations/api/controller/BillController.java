@@ -2,7 +2,9 @@ package com.billy.operations.api.controller;
 
 import com.billy.operations.api.model.Bill;
 import com.billy.operations.api.service.BillService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Bills")
 @RequestMapping("/bills")
 public class BillController {
     private final BillService billService;
@@ -21,6 +24,7 @@ public class BillController {
 
     @ApiResponse(responseCode = "201", description = "CREATED")
     @ApiResponse(responseCode = "404", description = "Not Found")
+    @Operation(summary = "Create a Bill ")
     @PostMapping(value = "/create", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Bill> addBill(@RequestBody Bill bill) {
         Bill saved =  billService.save(bill);
@@ -29,9 +33,10 @@ public class BillController {
                 .body(saved);
     }
 
+    @Operation(summary = "Get all bills by a given name")
     @GetMapping("/person/{name}")
-    public ResponseEntity<List<Bill>> getAllBillsForPerson(@PathVariable String name) {
-        List<Bill> bills = billService.getAllBillsForPerson(name);
+    public ResponseEntity<List<Bill>> getAllBillsByUser(@PathVariable String name) {
+        List<Bill> bills = billService.getAllBillsForUser(name);
         return ResponseEntity.ok(bills);
     }
 }

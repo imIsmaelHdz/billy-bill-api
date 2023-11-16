@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-    @ExceptionHandler(PersonNotFoundException.class)
-    public ResponseEntity<String> handleNotFoundException(PersonNotFoundException ex) {
-        logger.error("Person not found", ex);
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(UserNotFoundException ex) {
+        logger.error("User not found", ex);
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

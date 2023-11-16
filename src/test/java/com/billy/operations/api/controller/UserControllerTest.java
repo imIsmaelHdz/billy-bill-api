@@ -1,9 +1,8 @@
 package com.billy.operations.api.controller;
 
 import com.billy.operations.api.model.Nationality;
-import com.billy.operations.api.model.Person;
-import com.billy.operations.api.repository.PersonRepository;
-import org.junit.jupiter.api.Assertions;
+import com.billy.operations.api.model.User;
+import com.billy.operations.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonControllerTest {
+public class UserControllerTest {
 
     @LocalServerPort
     private int port;
@@ -32,52 +30,52 @@ public class PersonControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private PersonRepository personRepository;
+    private UserRepository userRepository;
 
     private String baseUrl;
 
     @BeforeEach
     void setUp() {
-        this.baseUrl = "http://localhost:" + port + "/people";
+        this.baseUrl = "http://localhost:" + port + "/users";
     }
 
     @Test
-    void testAddPerson() {
-        Person personToAdd = new Person();
-        personToAdd.setName("John Doe");
-        personToAdd.setBirthYear(1990);
-        personToAdd.setRFC("ABC123");
-        personToAdd.setNationality(Nationality.valueOf("US"));
+    void testAddUser() {
+        User userToAdd = new User();
+        userToAdd.setName("John Doe");
+        userToAdd.setBirthYear(1990);
+        userToAdd.setRFC("ABC123");
+        userToAdd.setNationality(Nationality.valueOf("US"));
 
-        ResponseEntity<Person> responseEntity =
-            restTemplate.postForEntity(baseUrl + "/create", personToAdd, Person.class);
+        ResponseEntity<User> responseEntity =
+            restTemplate.postForEntity(baseUrl + "/create", userToAdd, User.class);
 
         assertEquals(201, responseEntity.getStatusCodeValue());
 
-        Person addedPerson = responseEntity.getBody();
-        assertNotNull(addedPerson);
-        assertNotNull(addedPerson.getCustomId());
-        assertEquals(personToAdd.getName(), addedPerson.getName());
+        User addedUser = responseEntity.getBody();
+        assertNotNull(addedUser);
+        assertNotNull(addedUser.getCustomId());
+        assertEquals(userToAdd.getName(), addedUser.getName());
     }
 
     @Test
-    void testUpdatePersonNotFound() {
-        UUID nonExistentPersonId = UUID.randomUUID();
-        Person updatedPersonData = new Person();
-        updatedPersonData.setName("UpdatedName");
-        updatedPersonData.setBirthYear(1990);
+    void testUpdateUserNotFound() {
+        UUID nonExistentUserId = UUID.randomUUID();
+        User updatedUserData = new User();
+        updatedUserData.setName("UpdatedName");
+        updatedUserData.setBirthYear(1990);
 
         HttpHeaders headers = new HttpHeaders();
-        HttpEntity<Person> requestEntity = new HttpEntity<>(updatedPersonData, headers);
+        HttpEntity<User> requestEntity = new HttpEntity<>(updatedUserData, headers);
 
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Person> responseEntity = restTemplate.exchange(
-                    baseUrl + "/" + nonExistentPersonId,
+            ResponseEntity<User> responseEntity = restTemplate.exchange(
+                    baseUrl + "/" + nonExistentUserId,
                     HttpMethod.PUT,
                     requestEntity,
-                    Person.class);
+                    User.class);
         } catch (HttpClientErrorException e) {
             assertEquals(404, e.getRawStatusCode());
 

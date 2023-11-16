@@ -24,4 +24,5 @@ public class Bill {
     private String owner;
     private String processedId;
     private BigDecimal amount;
+    private BigDecimal taxPercentage;
 }

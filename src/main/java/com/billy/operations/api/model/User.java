@@ -16,7 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Node
-public class Person {
+public class User {
         @Id
         @GeneratedValue
         private UUID customId;
@@ -32,6 +32,8 @@ public class Person {
         private Nationality nationality;
         @Schema(description = "Regimes that applies to this person")
         private Set<Regime> regime = new HashSet<>();
+        //IVA
+        //ISR
 
         @Relationship(type = "HAS_BILL", direction = Relationship.Direction.OUTGOING)
         private Set<Bill> bills = new HashSet<>();
