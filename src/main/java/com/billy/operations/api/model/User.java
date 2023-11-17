@@ -29,6 +29,7 @@ public class User {
         private Integer birthYear;
         @Schema(description = "Unique tax identification number")
         private String RFC;
+        private Profile profile;
         @Schema(description = "nationality from person")
         private JobNationality jobNationality;
         @Schema(description = "Regimes that applies to this person")
