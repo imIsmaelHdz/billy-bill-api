@@ -22,6 +22,7 @@ public class User {
         private UUID customId;
         private String name;
         private String lastName;
+        private char[] password;
         @Schema(description = "user email for notifications")
         private String email;
         private String phoneNumber;
@@ -29,12 +30,9 @@ public class User {
         @Schema(description = "Unique tax identification number")
         private String RFC;
         @Schema(description = "nationality from person")
-        private Nationality nationality;
+        private JobNationality jobNationality;
         @Schema(description = "Regimes that applies to this person")
-        private Set<Regime> regime = new HashSet<>();
-        //IVA
-        //ISR
-
+        private Set<Tax> regime = new HashSet<>();
         @Relationship(type = "HAS_BILL", direction = Relationship.Direction.OUTGOING)
         private Set<Bill> bills = new HashSet<>();
 

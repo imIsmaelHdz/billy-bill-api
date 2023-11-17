@@ -7,6 +7,7 @@ import com.billy.operations.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class UserService {
                     UserFound.setLastName(updatedUser.getLastName());
                     UserFound.setBirthYear(updatedUser.getBirthYear());
                     UserFound.setRFC(updatedUser.getRFC());
-                    UserFound.setNationality(updatedUser.getNationality());
+                    UserFound.setJobNationality(updatedUser.getJobNationality());
                     return userRepository.save(UserFound);
                 })
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
@@ -39,6 +40,11 @@ public class UserService {
     public User findByName(String name) {
         Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByName(name));
         return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with Name: " + name));
+    }
+
+    public User findByRFC(String RFC) {
+        Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByRFC(RFC));
+        return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with RFC: " + RFC));
     }
 
     @Transactional

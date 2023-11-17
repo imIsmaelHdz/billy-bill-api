@@ -39,7 +39,7 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Not Found")
     @PutMapping("/{id}")
-    public ResponseEntity<User> updatePerson(@PathVariable UUID id, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User updatedUser) {
         User updated = userService.updateUser(id, updatedUser);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)

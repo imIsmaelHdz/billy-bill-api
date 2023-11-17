@@ -34,5 +34,12 @@ public class BillService {
         User user = userService.findByName(personName);
         return new ArrayList<>(user.getBills());
     }
+
+    @Transactional
+    public List<Bill> getAllBillsForUserByRFC(String personName) {
+        User user = userService.findByRFC(personName);
+        return new ArrayList<>(user.getBills());
+    }
+
 }
 

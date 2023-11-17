@@ -1,6 +1,6 @@
 package com.billy.operations.api.model;
 
-public enum Nationality {
+public enum JobNationality {
     MX,
     US
 }

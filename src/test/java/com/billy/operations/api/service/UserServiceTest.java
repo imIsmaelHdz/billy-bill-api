@@ -1,6 +1,7 @@
 package com.billy.operations.api.service;
 
-import com.billy.operations.api.model.Nationality;
+import com.billy.operations.api.model.Bill;
+import com.billy.operations.api.model.JobNationality;
 import com.billy.operations.api.model.User;
 import com.billy.operations.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,9 @@ import org.mockito.MockitoAnnotations;
 import com.billy.operations.api.controller.exception.UserNotFoundException;
 
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +42,8 @@ class UserServiceTest {
         userToAdd.setLastName("SquarePants");
         userToAdd.setBirthYear(2002);
         userToAdd.setRFC("235423523523");
-        userToAdd.setNationality(Nationality.valueOf("MX"));
+        userToAdd.setPhoneNumber("3332320032");
+        userToAdd.setJobNationality(JobNationality.valueOf("MX"));
 
         when(userRepository.save(any(User.class))).thenReturn(userToAdd);
 
@@ -58,7 +63,7 @@ class UserServiceTest {
         updatedUserData.setLastName("UpdatedLastName");
         updatedUserData.setBirthYear(1990);
         updatedUserData.setRFC("UpdatedRFC");
-        updatedUserData.setNationality(Nationality.valueOf("US"));
+        updatedUserData.setJobNationality(JobNationality.valueOf("US"));
 
         when(userRepository.findById(eq(userId))).thenReturn(java.util.Optional.of(new User())); // assuming a person with given ID exists
         when(userRepository.save(any(User.class))).thenReturn(updatedUserData);
@@ -88,6 +93,25 @@ class UserServiceTest {
         String expectedErrorMessage = "User not found with ID: " + userId;
         String actualErrorMessage = exception.getMessage();
         assertTrue(actualErrorMessage.contains(expectedErrorMessage), "Expected error message not found");
+    }
+    @Test
+    public void testAddBillToUser() {
+        Bill bill = new Bill();
+        bill.setOwner("testUser");
+        bill.setAmount(BigDecimal.valueOf(100.00));
+        bill.setTaxPercentage(BigDecimal.valueOf(15.00));
+
+        User user = new User();
+        user.setName("testUser");
+        user.setBills(new HashSet<>());
+
+        when(userRepository.findByName("testUser")).thenReturn(user);
+        userService.addBillToUser(bill);
+
+        verify(userRepository).save(user);
+
+        assertEquals(1, user.getBills().size());
+        assertTrue(user.getBills().contains(bill));
     }
 }
 
