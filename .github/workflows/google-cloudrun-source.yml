@@ -51,8 +51,8 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: billy-dev-env # TODO: update Google Cloud project id
-  SERVICE: billy-dev-env # TODO: update Cloud Run service name
+  PROJECT_ID: billy-app-dev-env # TODO: update Google Cloud project id
+  SERVICE: billy-app-dev-env # TODO: update Cloud Run service name
   REGION: us-central1 # TODO: update Cloud Run service region
 
 jobs:
