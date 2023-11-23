@@ -23,14 +23,13 @@ public class User {
         private String name;
         private String lastName;
         private char[] password;
-        @Schema(description = "user email for notifications")
         private String email;
         private String phoneNumber;
         private Integer birthYear;
-        @Schema(description = "Unique tax identification number")
-        private String RFC;
         private Profile profile;
-        @Schema(description = "nationality from person")
+        @Schema(description = "Unique Mexico tax identification number")
+        private String RFC;
+        @Schema(description = "Job nationality where user is working")
         private JobNationality jobNationality;
         @Schema(description = "Regimes that applies to this person")
         @Relationship(type = "HAS_TAX", direction = Relationship.Direction.OUTGOING)

@@ -22,6 +22,5 @@ public class Bill {
     private UUID billId;
     private String owner;
     private BigDecimal amount;
-    private BigDecimal taxPercentage;
     private String processedId;
 }

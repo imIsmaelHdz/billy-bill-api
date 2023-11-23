@@ -6,8 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Regime {
-    VERSION("626", "Régimen Simplificado de Confianza");
-    private final String key;
-    private final String value;
+    RSDC("626", "Régimen Simplificado de Confianza"),
+    PFAEMP("612", "Personas Físicas con Actividades Empresariales y Profesionales");
 
+    private final String key;
+    private final String description;
 }
