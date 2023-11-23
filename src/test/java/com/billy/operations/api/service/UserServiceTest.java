@@ -13,7 +13,6 @@ import com.billy.operations.api.controller.exception.UserNotFoundException;
 
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;

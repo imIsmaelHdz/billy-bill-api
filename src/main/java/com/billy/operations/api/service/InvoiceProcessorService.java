@@ -1,5 +1,6 @@
 package com.billy.operations.api.service;
 
+import com.billy.operations.api.model.InvoiceTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,7 @@ public class InvoiceProcessorService {
         this.userService = userService;
     }
 
-    public String BillProcessorV4(){
+    public String processInvoiceV4(){
         return "processed";
     }
 }

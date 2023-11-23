@@ -1,13 +1,13 @@
 package com.billy.operations.api.model;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum Regime {
-    SUELDOS_Y_SALARIOS,
-    ACTIVIDADES_EMPRESARIALES_Y_PROFESIONALES,
-    INCORPORACION_FISCAL,
-    PERSONAS_MORALES,
-    ARRENDAMIENTO,
-    INTERMEDIOS,
-    ENAJENACION_DE_BIENES,
-    CONSOLIDACION_FISCAL;
+    VERSION("626", "Régimen Simplificado de Confianza");
+    private final String key;
+    private final String value;
 
 }

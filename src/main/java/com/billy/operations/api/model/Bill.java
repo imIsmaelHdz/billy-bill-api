@@ -21,7 +21,7 @@ public class Bill {
     @GeneratedValue
     private UUID billId;
     private String owner;
-    private String processedId;
     private BigDecimal amount;
     private BigDecimal taxPercentage;
+    private String processedId;
 }

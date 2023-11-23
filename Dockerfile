@@ -3,7 +3,6 @@ FROM maven:3.8.3-openjdk-16 AS builder
 
 WORKDIR /app
 
-
 COPY pom.xml .
 
 COPY src src

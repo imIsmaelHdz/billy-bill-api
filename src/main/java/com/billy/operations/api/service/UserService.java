@@ -25,14 +25,16 @@ public class UserService {
     @Transactional
     public User updateUser(UUID id, User updatedUser) {
         return userRepository.findById(id)
-                .map(UserFound -> {
-                    UserFound.setName(updatedUser.getName());
-                    UserFound.setEmail(updatedUser.getEmail());
-                    UserFound.setLastName(updatedUser.getLastName());
-                    UserFound.setBirthYear(updatedUser.getBirthYear());
-                    UserFound.setRFC(updatedUser.getRFC());
-                    UserFound.setJobNationality(updatedUser.getJobNationality());
-                    return userRepository.save(UserFound);
+                .map(userFound -> {
+                    userFound.setName(updatedUser.getName());
+                    userFound.setEmail(updatedUser.getEmail());
+                    userFound.setLastName(updatedUser.getLastName());
+                    userFound.setBirthYear(updatedUser.getBirthYear());
+                    userFound.setRFC(updatedUser.getRFC());
+                    userFound.setProfile(updatedUser.getProfile());
+                    userFound.setJobNationality(updatedUser.getJobNationality());
+
+                    return userRepository.save(userFound);
                 })
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
     }

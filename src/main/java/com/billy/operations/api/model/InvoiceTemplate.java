@@ -1,11 +1,15 @@
 package com.billy.operations.api.model;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Invoice {
+public class InvoiceTemplate {
     private String Version;
     private String Serie;
     private String Folio;

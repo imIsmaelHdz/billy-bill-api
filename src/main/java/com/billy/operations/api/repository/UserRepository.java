@@ -1,6 +1,5 @@
 package com.billy.operations.api.repository;
 
-import com.billy.operations.api.model.Bill;
 import com.billy.operations.api.model.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.stereotype.Repository;

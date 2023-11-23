@@ -33,10 +33,8 @@ public class User {
         @Schema(description = "nationality from person")
         private JobNationality jobNationality;
         @Schema(description = "Regimes that applies to this person")
-        private Set<Tax> regime = new HashSet<>();
+        @Relationship(type = "HAS_TAX", direction = Relationship.Direction.OUTGOING)
+        private Set<Tax> regimes = new HashSet<>();
         @Relationship(type = "HAS_BILL", direction = Relationship.Direction.OUTGOING)
         private Set<Bill> bills = new HashSet<>();
-
-
-
 }

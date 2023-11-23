@@ -34,13 +34,17 @@ public class BillController {
     }
 
     @Operation(summary = "Get all bills by a given name")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Not Found")
     @GetMapping(value = "/user/name/{name}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Bill>> getAllBillsByUser(@PathVariable String name) {
+    public ResponseEntity<Iterable<Bill>> getAllBillsByUser(@PathVariable String name) {
         List<Bill> bills = billService.getAllBillsForUser(name);
         return ResponseEntity.ok(bills);
     }
     @Operation(summary = "Get all bills by a given RFC")
-    @GetMapping(value = "/person/rfc/{rfc}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Not Found")
+    @GetMapping(value = "/user/rfc/{rfc}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Iterable<Bill>> getBillsByRFC(@PathVariable String rfc) {
         List<Bill> bills = billService.getAllBillsForUserByRFC(rfc);
         return ResponseEntity.ok(bills);
