@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface UserRepository extends Neo4jRepository<User, UUID> {
     User findByName(String name);
     User findByRFC(String rfc);
+    User findByCustomId(UUID id);
 }

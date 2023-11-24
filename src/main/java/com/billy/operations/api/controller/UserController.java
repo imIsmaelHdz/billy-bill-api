@@ -1,5 +1,6 @@
 package com.billy.operations.api.controller;
 
+import com.billy.operations.api.model.Tax;
 import com.billy.operations.api.model.User;
 import com.billy.operations.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,9 +50,20 @@ public class UserController {
     @Operation(summary = "Return a user by give the name")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Not Found")
-    @GetMapping(value ="/{name}",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value ="/name/{name}" ,produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<User> getUserByName(@PathVariable String name) {
         User found =  userService.findByName(name);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(found);
+    }
+
+    @Operation(summary = "Return a user by give the custom ID")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Not Found")
+    @GetMapping(value ="/id/{customId}",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<User> getUserByCustomId(@PathVariable UUID customId) {
+        User found =  userService.findByCustomId(customId);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(found);

@@ -2,6 +2,7 @@ package com.billy.operations.api.service;
 
 import com.billy.operations.api.controller.exception.UserNotFoundException;
 import com.billy.operations.api.model.Bill;
+import com.billy.operations.api.model.Tax;
 import com.billy.operations.api.model.User;
 import com.billy.operations.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
     }
 
+    @Transactional
+    public void deleteUser(UUID id){
+        userRepository.deleteById(id);
+    }
+
     public User findByName(String name) {
         Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByName(name));
         return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with Name: " + name));
@@ -49,10 +55,22 @@ public class UserService {
         return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with RFC: " + RFC));
     }
 
+    public User findByCustomId(UUID customId) {
+        Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByCustomId(customId));
+        return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with id: " + customId));
+    }
+
     @Transactional
     public void addBillToUser(Bill bill) {
         User user = findByName(bill.getOwner());
         user.getBills().add(bill);
         userRepository.save(user);
+    }
+
+    @Transactional
+    public void addRegimesToUser(UUID userId,Tax tax) {
+        User userFound = findByCustomId(userId);
+        userFound.getRegimes().add(tax);
+        userRepository.save(userFound);
     }
 }

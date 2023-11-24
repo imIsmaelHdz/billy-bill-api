@@ -27,13 +27,12 @@ public class User {
         private String phoneNumber;
         private Integer birthYear;
         private Profile profile;
-        @Schema(description = "Unique Mexico tax identification number")
         private String RFC;
-        @Schema(description = "Job nationality where user is working")
         private JobNationality jobNationality;
-        @Schema(description = "Regimes that applies to this person")
+
         @Relationship(type = "HAS_TAX", direction = Relationship.Direction.OUTGOING)
         private Set<Tax> regimes = new HashSet<>();
+
         @Relationship(type = "HAS_BILL", direction = Relationship.Direction.OUTGOING)
         private Set<Bill> bills = new HashSet<>();
 }

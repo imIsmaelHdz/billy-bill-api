@@ -22,5 +22,5 @@ public class Bill {
     private UUID billId;
     private String owner;
     private BigDecimal amount;
-    private String processedId;
+    private Boolean processedFlag;
 }
