@@ -35,9 +35,8 @@ class BillServiceTest {
         Bill bill = new Bill(
                 UUID.randomUUID(),
                 "John Doe",
-                "12345",
                 new BigDecimal("100.00"),
-                new BigDecimal("10.0")
+                false
         );
 
         when(billRepository.save(any(Bill.class))).thenReturn(bill);

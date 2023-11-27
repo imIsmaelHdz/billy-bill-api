@@ -1,6 +1,6 @@
 version: '3'
 services:
-  neo4j:
+  database:
     image: neo4j
     container_name: my_neo4j_container
     ports:

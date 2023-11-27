@@ -1,6 +1,7 @@
 package com.billy.operations.api.controller;
 
 import com.billy.operations.api.model.JobNationality;
+import com.billy.operations.api.model.Profile;
 import com.billy.operations.api.model.User;
 import com.billy.operations.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,11 +43,13 @@ public class UserControllerTest {
     @Test
     void testAddUserWithBasicData() {
         User userToAdd = new User();
+        userToAdd.setCustomId(UUID.randomUUID());
+        userToAdd.setProfile(Profile.ADMINISTRATOR);
         userToAdd.setName("John Doe");
         userToAdd.setBirthYear(1990);
         userToAdd.setRFC("ABC123");
         userToAdd.setPhoneNumber("3332320032");
-        userToAdd.setJobNationality(JobNationality.valueOf("US"));
+        userToAdd.setJobNationality(JobNationality.MX);
 
         ResponseEntity<User> responseEntity =
             restTemplate.postForEntity(baseUrl + "/create", userToAdd, User.class);

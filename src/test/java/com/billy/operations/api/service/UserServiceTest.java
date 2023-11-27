@@ -62,7 +62,7 @@ class UserServiceTest {
         updatedUserData.setLastName("UpdatedLastName");
         updatedUserData.setBirthYear(1990);
         updatedUserData.setRFC("UpdatedRFC");
-        updatedUserData.setJobNationality(JobNationality.valueOf("US"));
+        updatedUserData.setJobNationality(JobNationality.valueOf("MX"));
 
         when(userRepository.findById(eq(userId))).thenReturn(java.util.Optional.of(new User())); // assuming a person with given ID exists
         when(userRepository.save(any(User.class))).thenReturn(updatedUserData);
@@ -98,7 +98,6 @@ class UserServiceTest {
         Bill bill = new Bill();
         bill.setOwner("testUser");
         bill.setAmount(BigDecimal.valueOf(100.00));
-        bill.setTaxPercentage(BigDecimal.valueOf(15.00));
 
         User user = new User();
         user.setName("testUser");
