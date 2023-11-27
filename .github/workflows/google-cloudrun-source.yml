@@ -51,7 +51,7 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: billy-app-dev-env
+  PROJECT_ID: billy-app
   SERVICE: billy-app-dev-env
   REGION: us-central1
 
