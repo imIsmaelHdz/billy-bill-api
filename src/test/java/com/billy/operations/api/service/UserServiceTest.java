@@ -62,7 +62,7 @@ class UserServiceTest {
         updatedUserData.setLastName("UpdatedLastName");
         updatedUserData.setBirthYear(1990);
         updatedUserData.setRFC("UpdatedRFC");
-        updatedUserData.setJobNationality(JobNationality.valueOf("MX"));
+        updatedUserData.setJobNationality(JobNationality.MX);
 
         when(userRepository.findById(eq(userId))).thenReturn(java.util.Optional.of(new User())); // assuming a person with given ID exists
         when(userRepository.save(any(User.class))).thenReturn(updatedUserData);

@@ -51,8 +51,8 @@ public class UserService {
     }
 
     public User findByRFC(String RFC) {
-        Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByRFC(RFC));
-        return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with RFC: " + RFC));
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByRFC(RFC));
+        return optionalUser.orElseThrow(() -> new UserNotFoundException("User not found with RFC: " + RFC));
     }
 
     public User findByCustomId(UUID customId) {

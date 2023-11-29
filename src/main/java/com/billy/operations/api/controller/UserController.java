@@ -1,6 +1,8 @@
 package com.billy.operations.api.controller;
 
-import com.billy.operations.api.model.Tax;
+import com.billy.operations.api.dto.UserDto;
+
+import com.billy.operations.api.dto.mapper.UserMapper;
 import com.billy.operations.api.model.User;
 import com.billy.operations.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,23 +52,25 @@ public class UserController {
     @Operation(summary = "Return a user by give the name")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Not Found")
-    @GetMapping(value ="/name/{name}" ,produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<User> getUserByName(@PathVariable String name) {
+    @GetMapping(value ="/name/{name}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserDto> getUserByName(@PathVariable String name) {
         User found =  userService.findByName(name);
+        UserDto userDto = UserMapper.INSTANCE.userToUserDto(found);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(found);
+                .body(userDto);
     }
 
     @Operation(summary = "Return a user by give the custom ID")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Not Found")
-    @GetMapping(value ="/id/{customId}",  produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<User> getUserByCustomId(@PathVariable UUID customId) {
+    @GetMapping(value ="/id/{customId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserDto> getUserByCustomId(@PathVariable UUID customId) {
         User found =  userService.findByCustomId(customId);
+        UserDto userDto = UserMapper.INSTANCE.userToUserDto(found);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(found);
+                .body(userDto);
     }
 
 }
