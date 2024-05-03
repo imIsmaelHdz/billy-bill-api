@@ -1,6 +1,28 @@
 spring:
+    profiles:
+        active: local
+
+---
+spring:
+    profiles: local
     neo4j:
         authentication:
-            password: neo4jPass
+            password: localPassword
+            username: localNeo4j
+        uri: neo4j://localhost:7687
+---
+spring:
+    profiles: remote
+    neo4j:
+        authentication:
+            password: jhY8-RbiFVIBCVT6fOsGBmJBJkwYPRk8OgRknYoMPbY
             username: neo4j
-        uri: neo4j://localhost
+        uri: neo4j+s://bc39838f.databases.neo4j.io
+---
+spring:
+    profiles: sandbox
+    neo4j:
+        authentication:
+            password: jhY8-RbiFVIBCVT6fOsGBmJBJkwYPRk8OgRknYoMPbY
+            username: neo4j
+        uri: neo4j+s://bc39838f.databases.neo4j.io
