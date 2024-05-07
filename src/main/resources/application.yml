@@ -1,14 +1,13 @@
 spring:
     profiles:
         active: local
-
 ---
 spring:
     profiles: local
     neo4j:
         authentication:
-            password: localPassword
-            username: localNeo4j
+            password: neo4jPass
+            username: neo4j
         uri: neo4j://localhost:7687
 ---
 spring:

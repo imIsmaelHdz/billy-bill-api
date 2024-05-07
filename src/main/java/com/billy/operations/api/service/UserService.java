@@ -1,6 +1,8 @@
 package com.billy.operations.api.service;
 
 import com.billy.operations.api.controller.exception.UserNotFoundException;
+import com.billy.operations.api.dto.UserDto;
+import com.billy.operations.api.dto.mapper.UserMapper;
 import com.billy.operations.api.model.Bill;
 import com.billy.operations.api.model.Tax;
 import com.billy.operations.api.model.User;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -58,6 +62,14 @@ public class UserService {
     public User findByCustomId(UUID customId) {
         Optional<User> optionalPerson = Optional.ofNullable(userRepository.findByCustomId(customId));
         return optionalPerson.orElseThrow(() -> new UserNotFoundException("User not found with id: " + customId));
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserDto> findAllUsersDto() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(UserMapper.INSTANCE::userToUserDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional
